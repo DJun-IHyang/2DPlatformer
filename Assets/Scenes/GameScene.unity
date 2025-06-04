@@ -1294,6 +1294,7 @@ MonoBehaviour:
   jumpSpeed: 15
   bottomCollider: {fileID: 1632666809}
   terrainCollider: {fileID: 1028472898}
+  bulletPrefab: {fileID: 5678259010461806229, guid: 3802022cdce62e54cb703fb9f2e3004e, type: 3}
 --- !u!50 &607990935
 Rigidbody2D:
   serializedVersion: 4
@@ -1762,7 +1763,7 @@ GameObject:
   - component: {fileID: 1028472898}
   m_Layer: 0
   m_Name: map
-  m_TagString: Untagged
+  m_TagString: Terrain
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9037,7 +9038,7 @@ GameObject:
   - component: {fileID: 1850202899}
   m_Layer: 0
   m_Name: Flower
-  m_TagString: Untagged
+  m_TagString: Terrain
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

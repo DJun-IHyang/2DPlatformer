@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Player : MonoBehaviour
@@ -14,6 +15,9 @@ public class Player : MonoBehaviour
     float prevVx = 0;
     bool isGrounded;
     Vector2 originPosition;
+
+    public GameObject bulletPrefab;
+    float lastShoot;
 
     // Start is called before the first frame update
     void Start()
@@ -93,9 +97,30 @@ public class Player : MonoBehaviour
 
 
         prevVx = vx;
+
+        //ÃÑ¾Ë ¹ß»ç
+        if(Input.GetButtonDown("Fire1") && lastShoot + 0.5f < Time.time)
+        {
+            Vector2 bulletV = Vector2.zero;
+
+            if(GetComponent<SpriteRenderer>().flipX)
+            {
+                bulletV = new Vector2(-10, 0);
+            }
+            else
+            {
+                bulletV = new Vector2(10, 0);
+            }
+
+            GameObject bullet = Instantiate(bulletPrefab);
+            bullet.transform.position = transform.position;
+            bullet.GetComponent<Bullet>().velocity = bulletV;
+            lastShoot = Time.time;
+        }
+
     }
 
-
+    
     private void FixedUpdate()
     {
         transform.Translate(Vector2.right * vx * speed * Time.fixedDeltaTime);
