@@ -95,7 +95,7 @@ public class ResultPopup : MonoBehaviour
     {
         Time.timeScale = 1;
 
-        SceneManager.LoadScene("GameScene");
+        SceneManager.LoadScene("NoName");
     }
 
     public void HighScorePressed()
