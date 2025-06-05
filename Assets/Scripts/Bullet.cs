@@ -22,7 +22,7 @@ public class Bullet : MonoBehaviour
     {
         if(collision.tag == "Terrain")
         {
-            Destroy(gameObject);
+            gameObject.SetActive(false);
         }
     }
 }

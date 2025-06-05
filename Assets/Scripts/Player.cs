@@ -112,7 +112,7 @@ public class Player : MonoBehaviour
                 bulletV = new Vector2(10, 0);
             }
 
-            GameObject bullet = Instantiate(bulletPrefab);
+            GameObject bullet = ObjectPool.Instance.GetBullet();
             bullet.transform.position = transform.position;
             bullet.GetComponent<Bullet>().velocity = bulletV;
             lastShoot = Time.time;
