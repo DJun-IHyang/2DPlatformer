@@ -6,19 +6,37 @@ public class Enemy : MonoBehaviour
 {
     public int hp = 3;
 
+    public float speed = 3;
 
+    public Collider2D frontBottomCollider;
+    public Collider2D frontCollider;
+
+    public CompositeCollider2D terrainCollider2D;
+
+
+    Vector2 vx;
 
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        vx = Vector2.right * speed;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if(frontCollider.IsTouching(terrainCollider2D) || !frontBottomCollider.IsTouching(terrainCollider2D))
+        {
+            vx = -vx;
+
+            transform.localScale = new Vector2(-transform.localScale.x, 1);
+        }
+    }
+
+    private void FixedUpdate()
+    {
+        transform.Translate(vx * Time.fixedDeltaTime);
     }
 
     public void Hit(int damage)
