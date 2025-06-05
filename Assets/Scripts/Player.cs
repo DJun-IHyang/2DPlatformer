@@ -27,6 +27,12 @@ public class Player : MonoBehaviour
 
     public void Restart()
     {
+        GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeRotation;
+        GetComponent<Rigidbody2D>().angularVelocity = 0;
+        GetComponent<BoxCollider2D>().enabled = true;
+
+
+        transform.eulerAngles = Vector3.zero;
         transform.position = originPosition;
         GetComponent<Rigidbody2D>().velocity = Vector2.zero;
     }
@@ -124,5 +130,28 @@ public class Player : MonoBehaviour
     private void FixedUpdate()
     {
         transform.Translate(Vector2.right * vx * speed * Time.fixedDeltaTime);
+    }
+
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(collision.gameObject.tag == "Enemy")
+        {
+            Die();
+        }
+
+
+
+        void Die()
+        {
+            GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.None;
+            GetComponent<Rigidbody2D>().angularVelocity = 720;
+            GetComponent<Rigidbody2D>().AddForce(new Vector2(0, 10),ForceMode2D.Impulse);
+            GetComponent < BoxCollider2D>().enabled = false;
+
+
+            GameManager.Instance.Die();
+
+        }
     }
 }
